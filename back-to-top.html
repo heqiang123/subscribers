@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            width: 200px;
+            height: 2000px;
+            background-color: red
+        }
+        button{
+            position: fixed;
+            bottom: 60px;
+            right: 60px
+        }
+    </style>
+    <script type="text/javascript" src="announcer-subscriber.js"></script>
+    <script type="text/javascript">
+    console.log(window.Event1)
+    // import {Event} from './announcer-subscriber'
+        function toTop(){
+            console.log(this.a)
+            var scrollTop = document.documentElement.scrollTop
+            var scrollTime = setInterval(()=>{
+                    window.scrollTo(0, scrollTop--)
+                    if(scrollTop < 0){
+                        clearInterval(scrollTime)
+                    }
+                },0)
+        }
+        window.onscroll = function () {
+            if(document.body.scrollTop||document.documentElement.scrollTop>0){
+                document.getElementById('toTop').style.display="block"
+            }else{
+                document.getElementById('toTop').style.display="none"
+            }
+        }
+        window.onload = function () {
+            window.scrollTo(0, 0)
+            document.getElementById('toTop').style.display="none"
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <button onclick="toTop()" id="toTop">点击返回顶层</button>
+    </div>
+</body>
+</html>
